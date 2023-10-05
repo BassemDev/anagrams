@@ -8,7 +8,7 @@ public class StringTransformerUtil {
     }
 
     // This method will remove all redundant spaces
-    public static String trimAllRedundantSpaces(String word) {
-        return StringUtils.normalizeSpace(word);
+    public static String removeAllSpaces(String word) {
+        return StringUtils.deleteWhitespace(word);
     }
 }

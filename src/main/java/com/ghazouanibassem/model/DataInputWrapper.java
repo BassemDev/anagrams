@@ -7,16 +7,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DataInputWraaper {
+public class DataInputWrapper {
     private final String input;
 
-    DataInputWraaper(String input) {
+    public DataInputWrapper(String input) {
         this.input = input;
     }
 
-    public String getNormalizedInput() {
+    public String getSanitizedInput() {
         final String lowerCaseString = StringTransformerUtil.toLowerCase(input);
-        final String normalizedString = StringTransformerUtil.trimAllRedundantSpaces(lowerCaseString);
+        final String normalizedString = StringTransformerUtil.removeAllSpaces(lowerCaseString);
         return normalizedString;
     }
 }
