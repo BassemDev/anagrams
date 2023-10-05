@@ -35,13 +35,13 @@ public class StringTransformerTest {
         String thirdSample = "     ";
         
         // When
-        String firstOutput = StringTransformerUtil.trimAllRedundantSpaces(firstSample);
-        String secondOutput = StringTransformerUtil.trimAllRedundantSpaces(secondSample);
-        String thirdOutput = StringTransformerUtil.trimAllRedundantSpaces(thirdSample);
+        String firstOutput = StringTransformerUtil.removeAllSpaces(firstSample);
+        String secondOutput = StringTransformerUtil.removeAllSpaces(secondSample);
+        String thirdOutput = StringTransformerUtil.removeAllSpaces(thirdSample);
         
         // Then
-        assert(firstOutput).equals("first TeSt");
-        assert(secondOutput).equals("te st");
+        assert(firstOutput).equals("firstTeSt");
+        assert(secondOutput).equals("test");
         assert(thirdOutput).equals("");
     }
     
