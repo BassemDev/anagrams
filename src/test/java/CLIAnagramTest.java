@@ -144,4 +144,38 @@ public class CLIAnagramTest {
 
         assertEquals(expectedExitCode, exitCode);
     }
+
+    @Test
+    @DisplayName("Should display the fail message for the NON anagrams")
+    void shouldDisplayFaillMessageForAnagrams() {
+        // Given
+        String firstWord = "listeN";
+        String secondWord = "test";
+        String[] cmdLineValues = {"-f1", firstWord, secondWord};
+        ByteArrayOutputStream err = new ByteArrayOutputStream();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream oldErr = System.err;
+        PrintStream oldOut = System.out;
+        int exitCode;
+
+        // When
+        try {
+            System.setErr(new PrintStream(err));
+            System.setOut(new PrintStream(out));
+            exitCode = this.commandLine.execute(cmdLineValues);
+        } finally {
+            System.setErr(oldErr);                 
+            System.setOut(oldOut);
+        }
+        
+        String expectedOutputString = "Welcome to Anagram CLI\n" + 
+        "\nThe validation of the two words : " +  firstWord + " " + secondWord + " " + "false\n";
+        int expectedExitCode = 0;
+
+        // Then
+        assertEquals(expectedOutputString, out.toString());
+        assertEquals("", err.toString());
+
+        assertEquals(expectedExitCode, exitCode);
+    }
 }
