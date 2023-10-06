@@ -1,13 +1,8 @@
 package com.ghazouanibassem;
-
-import java.io.DataInput;
 import java.util.Scanner;
-
-import org.checkerframework.checker.units.qual.A;
 
 import com.ghazouanibassem.anagramUtils.AnagramsDictionaryUtil;
 import com.ghazouanibassem.model.DataInputWrapper;
-import com.ghazouanibassem.utils.StringTransformerUtil;
 import com.ghazouanibassem.utils.StringValidatorUtil;
 
 public class Main {
