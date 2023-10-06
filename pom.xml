@@ -61,6 +61,12 @@
             <artifactId>guava</artifactId>
             <version>32.1.2-jre</version>
         </dependency>
+        <!-- Dependency used for the CLI in java -->
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>4.7.5</version>
+        </dependency>
 
         <!-- Unit test dependencies -->
         <dependency>
