@@ -9,9 +9,14 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
+import picocli.CommandLine.Spec;
+import picocli.CommandLine.Model.CommandSpec;
 
 @Command(name = "CLI Anagram", mixinStandardHelpOptions = true, description = "Check If two words are anagram or not !")
 public class CLIAnagram implements Callable<Integer> {
+    // used for the test scope
+    @Spec 
+    CommandSpec spec;
 
     @Parameters(index = "0", description = "First word to check", defaultValue = "")
     private String firstWord;
@@ -35,10 +40,12 @@ public class CLIAnagram implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        System.out.println("Welcome to Anagram CLI \n");
+        this.spec.commandLine().getOut().print("Welcome to Anagram CLI - Spec for test");
+        System.out.println("Welcome to Anagram CLI\n");
         // Check if the user request help
         if (this.help) {
-            System.out.println("The following CLI allow you to verfiy if two word are anagram.\n You must run the program with -f1 option and specify two words as args.\n");
+            System.out.println("The following CLI allow you to verfiy if two word are anagram.\nYou must run the program with -f1 option and specify two words as args.\n");
+            return 0;
         }
 
         if (this.invokeFunction) {
@@ -119,10 +126,7 @@ public class CLIAnagram implements Callable<Integer> {
             DataInputWrapper firstDataInput = new DataInputWrapper(firstWord);
             DataInputWrapper secondDataInput = new DataInputWrapper(secondWord);
 
-            firstWord = firstDataInput.getSanitizedInput();
-            secondWord = secondDataInput.getSanitizedInput();
-
-            System.out.println("The validation of the two words : " + firstWord + ' ' + secondWord + ' ' + AnagramsDictionaryUtil.isValid(firstWord, secondWord));
+            System.out.println("The validation of the two words : " + firstWord + ' ' + secondWord + ' ' + AnagramsDictionaryUtil.isValid(firstDataInput.getSanitizedInput(), secondDataInput.getSanitizedInput()));
         }
         return 0;
     }
