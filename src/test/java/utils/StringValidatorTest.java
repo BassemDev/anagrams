@@ -37,5 +37,40 @@ public class StringValidatorTest {
         assertFalse(incorrectThirdSampleOutput, "The validation of the word with mixed special chars failed");
         assertFalse(incorrectFourthSampleOutput, "The validation of the word with special char '-' failed");
     }
+
+    @Test
+    @DisplayName("Should verify that the word is empty or blank")
+    void shouldVerifyEmptyAndBlankStrings() {
+        // Given
+        String firstSample = "T    O";
+        String secondSample = "       ";
+        String thirdSample = "";
+
+        // When
+        boolean firstSampleOutput = StringValidatorUtil.isStringBlankOrEmpty(firstSample);
+        boolean secondSampleOutput = StringValidatorUtil.isStringBlankOrEmpty(secondSample);
+        boolean thirdSampleOutput = StringValidatorUtil.isStringBlankOrEmpty(thirdSample);
+
+        // Then
+        assertFalse(firstSampleOutput, "The validation empty or blank word failed for first case");
+        assertTrue(secondSampleOutput, "The validation empty or blank word failed for second case");
+        assertTrue(thirdSampleOutput, "The validation empty or blank word failed for third case");
+    }
+
+    @Test
+    @DisplayName("Should verify that the word is composed on ONE letter")
+    void shouldVerifyWordLengthIsOne() {
+        // Given
+        String firstSample = "TOf";
+        String secondSample = " ";
+
+        // When
+        boolean firstSampleOutput = StringValidatorUtil.isOneCharString(firstSample);
+        boolean secondSampleOutput = StringValidatorUtil.isOneCharString(secondSample);
+
+        // Then
+        assertFalse(firstSampleOutput, "The validation of word length failed for first case");
+        assertTrue(secondSampleOutput, "The validation of word length failed for second case");
+    }
     
 }
