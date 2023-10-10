@@ -1,21 +1,21 @@
 # ANAGRAM CLI 📃
-The following project allows to verifiy if two words are anagrams and get the group of anagrams related to a specific word.
+The following project allows to verify if two words are anagrams and get the group of anagrams related to a specific word.
 By defintion two words (X, Y) are anagrams if Y could be formed with the exact same number of caracters of the Y. 
-The project interaction is handled via CLI command, please take a look on the section CLI Command below to know the list of possible command to use.
+The project interaction is handled via CLI command, please take a look on the section CLI Command below 👇 to know the list of possible command to use.
 
 ## Project stack information 
-The project is using java 17 with maven as project manager. There are different dependencies used within it to handle verification and validation of inputs from the user when interacting with the CLI.
-The most important library in this maven project that you should take a look into is:
-- picocli (The library in charge of making java app runnable via terminal) -> [DOCS](https://picocli.info/) 👩‍💻🧑‍💻
+The project is using java 17 with maven as project manager. There are different dependencies used in this project. Some of them to handle verification and validation of inputs from the user when interacting with the CLI.
+Meanwhile the most important library in this maven project that you should take a look into is:
+- picocli (The library in charge of making java app runnable via command and argument via terminal) -> [DOCS](https://picocli.info/) 👩‍💻🧑‍💻
 
 ## Setup ⏳
-Please make sure you have the minimum requirements to be able to run the project. This mean you already installed JDK/java and maven since the project will be run via maven plugin life cycle.
+Please make sure you have the minimum requirements to be able to run the project. This means you already installed JDK/java and maven since the project will be run via maven plugin life cycle.
 - You can install Java/OpenJdk from here: [Download](https://jdk.java.net/17/)
 - You can install Maven from the following link: [Download](https://maven.apache.org/download.cgi)
 Of course remember to set up correctly the **PATH** variables.
 
 ## How to run the project ⏲
-This a maven project, so you need to make sure to clean, validate, compile, test and package it so you would have **JAR** resource under **target** folder. You can run this later via ``java -cp`` and follow the section below for more details.\
+This a maven project, so you need to make sure to clean, validate, compile, test and package it, so you would have **JAR** resource under **target** folder. You can run this later via ``java -cp`` and follow the section below for more details.\
 To be more sure about if all correctly ready to be used, you will find a file with the following name `target/anagrams-1.0-SNAPSHOT.jar` in your system after running the basic maven command (ie: reach the package cycle of maven).
 
 ## CLI command available when running the project
