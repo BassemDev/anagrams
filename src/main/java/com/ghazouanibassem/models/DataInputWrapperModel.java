@@ -1,4 +1,4 @@
-package com.ghazouanibassem.model;
+package com.ghazouanibassem.models;
 
 import com.ghazouanibassem.utils.StringTransformerUtil;
 
@@ -7,10 +7,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DataInputWrapper {
+public class DataInputWrapperModel {
     private final String input;
 
-    public DataInputWrapper(String input) {
+    public DataInputWrapperModel(String input) {
         this.input = input;
     }
 

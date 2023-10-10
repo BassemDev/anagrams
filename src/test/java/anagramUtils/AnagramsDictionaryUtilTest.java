@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.ghazouanibassem.anagramUtils.AnagramsDictionaryUtil;
+import com.ghazouanibassem.utils.AnagramsCheckerUtil;
 
 public class AnagramsDictionaryUtilTest {
 
@@ -20,8 +20,8 @@ public class AnagramsDictionaryUtilTest {
         final String fourthWord = "silent";
         
         // When
-        final boolean firstEvaluationResult = AnagramsDictionaryUtil.isValid(firstWord, secondWord);
-        final boolean secondEvaluationResult = AnagramsDictionaryUtil.isValid(thirdWord, fourthWord);
+        final boolean firstEvaluationResult = AnagramsCheckerUtil.isValid(firstWord, secondWord);
+        final boolean secondEvaluationResult = AnagramsCheckerUtil.isValid(thirdWord, fourthWord);
 
         // Then
         assertTrue(firstEvaluationResult, "Failed to evaluate an anagram word to true - first case");
@@ -36,7 +36,7 @@ public class AnagramsDictionaryUtilTest {
         final String secondWord = "arm";
         
         // When
-        final boolean evaluationResult = AnagramsDictionaryUtil.isValid(firstWord, secondWord);
+        final boolean evaluationResult = AnagramsCheckerUtil.isValid(firstWord, secondWord);
 
         // Then
         assertFalse(evaluationResult, "Failed to return NON anagaram for words with different sizes");
