@@ -27,7 +27,7 @@ public class CLIAnagramTest {
     }
 
     @Test
-    @DisplayName("Should exit the anagram check with 0 as code")
+    @DisplayName("Should exit the anagram check with 1 as code")
     void shouldExitProgramSuccessfully() {
         // Given
         String[] cmdLineValues = {"-f1", "ram", "mar"};
@@ -37,7 +37,7 @@ public class CLIAnagramTest {
 
         // Then
         assertEquals("Welcome to Anagram CLI - Spec for test", stringWriter.toString());
-        assertEquals(0, exitCode);
+        assertEquals(1, exitCode);
     }
 
     @Test
@@ -61,20 +61,51 @@ public class CLIAnagramTest {
             System.setOut(oldOut);
         }
         
-        String expectedErrorString = "Missing required option: '-f1'\n" +
-        "Usage: CLI Anagram [-h] -f1 <firstWord> <secondWord>\n" +
-        "Check If two words are anagram or not !\n" +
-        "      <firstWord>    First word to check\n" + 
-        "      <secondWord>   Second word to check\n" +
-        "      -f1            Option related to run the anagram validation\n" +
-        "  -h, version        Display helper message for the user\n";
-        int expectedInvalidCommandusageErrorCode = 2;
+        String expectedOutputString = "Welcome to Anagram CLI\n\n" +
+                "You MUST specify either -f1 or -f2 as an option to be able to run the program correctly.\n" +
+                "- Please select -f1 option and specify two words as args if you want to verify Anagrams.\n" +
+                "- Please select -f2 option and specify the word you would like to see his group of Anagram.\n\n";
+        int expectedCommandusageErrorCode = 0;
 
         // Then
-        assertEquals("", out.toString());
-        assertEquals(expectedErrorString, err.toString());
+        assertEquals(expectedOutputString, out.toString());
+        assertEquals("", err.toString());
 
-        assertEquals(expectedInvalidCommandusageErrorCode, exitCode);
+        assertEquals(expectedCommandusageErrorCode, exitCode);
+    }
+
+    @Test
+    @DisplayName("Should display the help message when -h is passed as agrs")
+    void shouldDisplayHelpMessageWhenHelpOptionIsSelected() {
+        // Given
+        String[] cmdLineValues = {"-h"};
+        ByteArrayOutputStream err = new ByteArrayOutputStream();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream oldErr = System.err;
+        PrintStream oldOut = System.out;
+        int exitCode;
+
+        // When
+        try {
+            System.setErr(new PrintStream(err));
+            System.setOut(new PrintStream(out));
+            exitCode = this.commandLine.execute(cmdLineValues);
+        } finally {
+            System.setErr(oldErr);                 
+            System.setOut(oldOut);
+        }
+        
+        String expectedOutputString = "Welcome to Anagram CLI\n\n" +
+        "The following CLI allow you to verfiy if two word are anagram or find out ALREADY tested related anagram word group.\n" +
+        "- To run the check of anagram, You should run the command with -f1 option and specify two words as args.\n" +
+        "- To find out ALREADY tested related anagram to a keyword, You should run the command with -f2 option and specify the word as an arg.\n\n";
+        int expectedExitCode = 0;
+
+        // Then
+        assertEquals(expectedOutputString, out.toString());
+        assertEquals("", err.toString());
+
+        assertEquals(expectedExitCode, exitCode);
     }
 
     @Test
@@ -98,10 +129,10 @@ public class CLIAnagramTest {
             System.setOut(oldOut);
         }
         
-        String expectedOutputString = "Welcome to Anagram CLI\n" + 
-                "\nThe following CLI allow you to verfiy if two word are anagram.\n" +
-                "You must run the program with -f1 option and specify two words as args.\n" +
-                "\n";
+        String expectedOutputString = "Welcome to Anagram CLI\n\n" +
+        "The following CLI allow you to verfiy if two word are anagram or find out ALREADY tested related anagram word group.\n" +
+        "- To run the check of anagram, You should run the command with -f1 option and specify two words as args.\n" +
+        "- To find out ALREADY tested related anagram to a keyword, You should run the command with -f2 option and specify the word as an arg.\n\n";
         int expectedExitCode = 0;
 
         // Then
@@ -136,7 +167,7 @@ public class CLIAnagramTest {
         
         String expectedOutputString = "Welcome to Anagram CLI\n" + 
         "\nThe validation of the two words : " +  firstWord + " " + secondWord + " " + "true\n";
-        int expectedExitCode = 0;
+        int expectedExitCode = 1;
 
         // Then
         assertEquals(expectedOutputString, out.toString());
@@ -170,12 +201,113 @@ public class CLIAnagramTest {
         
         String expectedOutputString = "Welcome to Anagram CLI\n" + 
         "\nThe validation of the two words : " +  firstWord + " " + secondWord + " " + "false\n";
-        int expectedExitCode = 0;
+        int expectedExitCode = 1;
 
         // Then
         assertEquals(expectedOutputString, out.toString());
         assertEquals("", err.toString());
 
         assertEquals(expectedExitCode, exitCode);
+    }
+
+    @Test
+    @DisplayName("Should fail when command line is called with two function invoke -f1 and -f2")
+    void shouldDisplayFaillMessageWhenBothOptionArePresent() {
+        // Given
+        String[] cmdLineValues = {"-f1", "-f2"};
+        ByteArrayOutputStream err = new ByteArrayOutputStream();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream oldErr = System.err;
+        PrintStream oldOut = System.out;
+        int exitCode;
+
+        // When
+        try {
+            System.setErr(new PrintStream(err));
+            System.setOut(new PrintStream(out));
+            exitCode = this.commandLine.execute(cmdLineValues);
+        } finally {
+            System.setErr(oldErr);                 
+            System.setOut(oldOut);
+        }
+        
+        String expectedOutputString = "Welcome to Anagram CLI\n\n"+
+        "Operation Not PERMITTED, you can not specify both options -f1 -f2 when running the command.\n"+
+        "- Please select -f1 option and specify two words as args if you want to verify Anagrams.\n" +
+        "- Please select -f2 option and specify the word you would like to see his group of Anagram.\n\n";
+        int terminatedErrorExitCode = 2;
+
+        // Then
+        assertEquals(expectedOutputString, out.toString());
+        assertEquals("", err.toString());
+
+        assertEquals(terminatedErrorExitCode, exitCode);
+    }
+
+    @Test
+    @DisplayName("Should return empty result when choosing to display anagram from first command run")
+    void shouldDisplayEmptyResultWhenLookForAnagramOnFirstRun() {
+        // Given
+        String word = "arm";
+        String[] cmdLineValues = {"-f2", word};
+        ByteArrayOutputStream err = new ByteArrayOutputStream();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream oldErr = System.err;
+        PrintStream oldOut = System.out;
+        int exitCode;
+
+        // When
+        try {
+            System.setErr(new PrintStream(err));
+            System.setOut(new PrintStream(out));
+            exitCode = this.commandLine.execute(cmdLineValues);
+        } finally {
+            System.setErr(oldErr);                 
+            System.setOut(oldOut);
+        }
+        
+        String expectedOutputString = "Welcome to Anagram CLI\n\n"+
+        "There is no matching anagram groups for the word: arm\n" +
+        "-------------------------------------------------\n";
+        int terminatedErrorExitCode = 1;
+
+        // Then
+        assertEquals(expectedOutputString, out.toString());
+        assertEquals("", err.toString());
+
+        assertEquals(terminatedErrorExitCode, exitCode);
+    }
+
+    @Test
+    @DisplayName("Should return error message when function 1 is called with one ONLY word")
+    void shouldReturnErrorMessageWhenAnagramIsCalledWithOneWord() {
+        // Given
+        String word = "arm";
+        String[] cmdLineValues = {"-f1", word};
+        ByteArrayOutputStream err = new ByteArrayOutputStream();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream oldErr = System.err;
+        PrintStream oldOut = System.out;
+        int exitCode;
+
+        // When
+        try {
+            System.setErr(new PrintStream(err));
+            System.setOut(new PrintStream(out));
+            exitCode = this.commandLine.execute(cmdLineValues);
+        } finally {
+            System.setErr(oldErr);                 
+            System.setOut(oldOut);
+        }
+        
+        String expectedOutputString = "Welcome to Anagram CLI\n\n"+
+        "Oups : The second word is either empty or contains invalid caracters !!!\n";
+        int terminatedErrorExitCode = 1;
+
+        // Then
+        assertEquals(expectedOutputString, out.toString());
+        assertEquals("", err.toString());
+
+        assertEquals(terminatedErrorExitCode, exitCode);
     }
 }
