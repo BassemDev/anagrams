@@ -1,7 +1,7 @@
 # ANAGRAM CLI 📃
 The following project allows to verify if two words are anagrams and get the group of anagrams related to a specific word.
 By defintion two words (X, Y) are anagrams if Y could be formed with the exact same number of caracters of the Y. 
-The project interaction is handled via CLI command, please take a look on the section CLI Command below 👇 to know the list of possible command to use.
+The project interaction is handled via CLI command, please take a look at the section CLI Command below 👇 to know the list of possible command to use.
 
 ## Project stack information 
 The project is using java 17 with maven as project manager. There are different dependencies used in this project. Some of them to handle verification and validation of inputs from the user when interacting with the CLI.
