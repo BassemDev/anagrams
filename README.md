@@ -5,11 +5,11 @@ The project interaction is handled via CLI command, please take a look at the se
 
 ## Project stack information 
 The project is using java 17 with maven as project manager. There are different dependencies used in this project. Some of them to handle verification and validation of inputs from the user when interacting with the CLI.
-Meanwhile the most important library in this maven project that you should take a look into is:
+Meanwhile the most important library in this maven project that you should take a look at is:
 - picocli (The library in charge of making java app runnable via command and argument via terminal) -> [DOCS](https://picocli.info/) 👩‍💻🧑‍💻
 
 ## Setup ⏳
-Please make sure you have the minimum requirements to be able to run the project. This means you already installed JDK/java and maven since the project will be run via maven plugin life cycle.
+Please make sure you have the minimum requirements to be able to run the project. This means you already installed JDK/java and maven since the project will be run via maven plugin cycle.
 - You can install Java/OpenJdk from here: [Download](https://jdk.java.net/17/)
 - You can install Maven from the following link: [Download](https://maven.apache.org/download.cgi)
 Of course remember to set up correctly the **PATH** variables.
@@ -28,7 +28,7 @@ Now you must know that the behavior of the project **differs** based on the argu
 To start with a simple command, let's use the help 👀 argument:
 - Run the command `java -cp target/anagrams-1.0-SNAPSHOT.jar com.ghazouanibassem.CLIAnagram -h` .
 
-The output you will receive from the terminal would be the following and this is the helpful message that explain for you how to interact with the terminal
+The output you will receive from the terminal would be the following and this is the helpful message that explains for you how to interact with the terminal.
 ```
 Welcome to Anagram CLI
 
