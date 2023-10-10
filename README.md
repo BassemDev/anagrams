@@ -69,7 +69,7 @@ would you like to continue using the tool or would you like to exit ?
 - If no, please enter N
 ```
 
-If you would like to display the list of related anagrams after you run multiple time anagram check all you need to do is:
+If you would like to display the list of related anagrams, after you run multiple times anagram checks, all you need to do is:
 - Enter -f2
 - Enter the word to look for
 - The sytem will display the related group.
