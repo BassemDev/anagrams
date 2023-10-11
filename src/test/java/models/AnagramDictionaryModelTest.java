@@ -85,7 +85,7 @@ public class AnagramDictionaryModelTest {
         String matchingNewAnagramMapKey = anagramDictionaryModel.findAnagramMatchingKey(newWord);
        
         // Then
-        // Affore update of the HashMap
+        // After update of the HashMap
         assertEquals("German", matchingNewAnagramMapKey);
     }
 
@@ -104,7 +104,7 @@ public class AnagramDictionaryModelTest {
         Set<String> expectedRelatedWordsGroup = Set.of("animal", "lamina", "manila");
        
         // Then
-        // Afore update of the HashMap
+        // After update of the HashMap
         assertEquals(expectedRelatedWordsGroup, relatedWordsGroup);
     }
 
@@ -123,7 +123,6 @@ public class AnagramDictionaryModelTest {
         Set<String> expectedRelatedWordsGroup = Set.of("animal", "lamina", "manila");
        
         // Then
-        // Aefore update of the HashMap
         assertEquals(expectedRelatedWordsGroup, relatedWordsGroup);
     }
 
@@ -143,7 +142,7 @@ public class AnagramDictionaryModelTest {
         Set<String> expectedRelatedWordsGroup = Set.of("animal", "lamina", "manila");
        
         // Then
-        // Afore update of the HashMap
+        // After update of the HashMap
         assertEquals(expectedRelatedWordsGroup, relatedWordsGroup);
     }
 
@@ -162,7 +161,7 @@ public class AnagramDictionaryModelTest {
         anagramDictionaryModel.addNewAnagramGroupEntry(List.of("alert", "later"));
        
         // Then
-        // Afore update of the HashMap
+        // After update of the HashMap
         assertNotNull(anagramDictionaryModel.findAnagramMatchingKey(newWordLookup), "Failed to find key of an existing anagrams group");
         assertEquals(anagramDictionaryModel.findRelatedAnagramGroup(newWordLookup), Set.of("alert", "later"));
     }
