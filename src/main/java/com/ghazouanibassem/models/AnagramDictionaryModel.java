@@ -85,7 +85,14 @@ public class AnagramDictionaryModel {
 
     // Update the Map with new entry Key -> Groupe of Anagram
     public void addNewAnagramGroupEntry(List<String> anagrams) {
-        final String newMapKey = anagrams.get(0);
-        this.groups.put(newMapKey, new HashSet<String>(anagrams));
+        String matchingKey = findAnagramMatchingKey(anagrams.get(0));
+        
+        if (matchingKey == null) {
+            final String newMapKey = anagrams.get(0);
+            this.groups.put(newMapKey, new HashSet<String>(anagrams));
+        } else {
+            addWordsToAnagramWorldsGroupWithExactKey(matchingKey, anagrams);
+        }
+        
     }
 }
